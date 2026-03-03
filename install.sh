@@ -1,6 +1,8 @@
 #!/bin/bash
-# The top level dotfile installer to get my env the way I like it
 
-# Ubuntu stuff
-apt update
-apt install fd-find
+DOTFILES_DIR="$HOME/dotfiles"
+
+ln -sf "$DOTFILES_DIR/vimrc" "$HOME/.vimrc"
+ln -sf "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
+
+echo "Dotfiles installed."
