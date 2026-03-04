@@ -5,6 +5,7 @@ set -e
 
 ln -sf {`pwd`/,~/.}bashrc
 ln -sf {`pwd`/,~/.}vimrc
+ln -sf {`pwd`/,~/.}hgrc
 
 # Set up the Qumulo toolchain and repos.
 if [ ! -e ~/tools ]; then
