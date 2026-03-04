@@ -1,0 +1,43 @@
+[ui]
+username = Daniel Pehush <dpehush@qumulo.com>
+editor=vim
+
+[pager]
+pager = LESS='FSRX' less
+quiet = True
+
+[extensions]
+color =
+mq =
+pager =
+qumulo = ~/tools/hgext/qumulo.py
+record =
+purge =
+
+[hooks]
+# Prevent "hg pull" if MQ patches are applied.
+prechangegroup.mq-no-pull = ! hg qtop > /dev/null 2>&1
+# Prevent "hg push" if MQ patches are applied.
+preoutgoing.mq-no-push = ! hg qtop > /dev/null 2>&1
+
+[diff]
+showfunc = True
+git = True
+unified = 10
+
+# The following sections are nice to have but not required
+[alias]
+# Can be extended or customized to personal preferences
+q = qseries -s -v
+qstat = qdiff --stat
+qcref = !$HG qrefresh -X. && $HG qrefresh --config ui.interface.chunkselector=curses --interactive
+qlog = log -v -p -r qbase: --pager=on --stat
+
+[color]
+# Can be customized to personal preferences, if we have...
+status.modified = magenta bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = blue bold
+status.ignored = black bold
