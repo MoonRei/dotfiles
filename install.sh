@@ -23,4 +23,23 @@ fi
 
 ~/src/prebuild
 
+# Set up Vim LSP: vim-lsp plugins (native packages) + the `nil` Nix language server.
+VIM_PACK=~/.vim/pack/lsp/start
+mkdir -p "$VIM_PACK"
+for repo in \
+    prabirshrestha/vim-lsp \
+    mattn/vim-lsp-settings \
+    prabirshrestha/asyncomplete.vim \
+    prabirshrestha/asyncomplete-lsp.vim \
+    LnL7/vim-nix; do
+    dest="$VIM_PACK/$(basename "$repo")"
+    if [ ! -e "$dest" ]; then
+        git clone --depth=1 "https://github.com/$repo.git" "$dest"
+    fi
+done
+
+if ! command -v nil >/dev/null 2>&1; then
+    nix profile install github:oxalica/nil
+fi
+
 echo "Dotfiles installed."
